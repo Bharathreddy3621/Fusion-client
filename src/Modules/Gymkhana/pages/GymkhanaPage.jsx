@@ -13,15 +13,6 @@ import {
   Button,
 } from "@mantine/core";
 import dayjs from "dayjs";
-import { useMediaQuery } from "@mantine/hooks";
-import ModuleTabs from "../../components/moduleTabs";
-import { setActiveTab_ } from "../../redux/moduleslice";
-
-import ClubFilter from "./calender/ClubFilter";
-import DateSelector from "./calender/DateSelector";
-import EventCalendar from "./calender/EventCalender";
-import EventCard from "./calender/EventCard";
-
 import {
   useGetClubMembers,
   useGetData,
@@ -30,6 +21,17 @@ import {
   useGetClubAcheivement,
   useGetFests,
 } from "./BackendLogic/ApiRoutes";
+
+// After
+import ClubFilter from "../components/common/ClubFilter";
+import DateSelector from "../components/common/DateSelector";
+import EventCalendar from "../components/common/EventCalendar";
+import EventCard from "../components/common/EventCard";
+import DataTable from "../components/tables/DataTable";
+import ClubViewComponent from "../components/layouts/ClubViewComponent";
+import { useUpcomingEvents, usePastEvents } from "../hooks/useEvents";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import styles from "../styles/gymkhana.module.css";
 
 const CustomTable = lazy(() => import("./CustomTable"));
 const ClubViewComponent = lazy(() => import("./ClubViewComponent"));
