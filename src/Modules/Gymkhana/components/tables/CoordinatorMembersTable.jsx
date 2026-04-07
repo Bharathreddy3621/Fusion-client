@@ -8,7 +8,7 @@ import { IconTrash, IconCheck } from "@tabler/icons-react";
 import PropTypes from "prop-types";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useGetClubMembers } from "./BackendLogic/ApiRoutes";
+import { useClubMembers } from "../../hooks/useClubs";
 import { host } from "../../routes/globalRoutes/index.jsx";
 
 function CoordinatorMembers({ clubName }) {

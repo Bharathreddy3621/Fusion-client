@@ -1,9 +1,15 @@
-import { Alert } from '@mantine/core';
-import PropTypes from 'prop-types';
+import { Alert } from "@mantine/core";
+import PropTypes from "prop-types";
 
-function AlertMessage({ title, message, color = 'blue', onClose }) {
+function AlertMessage({ title, message, color = "blue", onClose }) {
   return (
-    <Alert title={title} color={color} withCloseButton onClose={onClose} mt="md">
+    <Alert
+      title={title}
+      color={color}
+      withCloseButton
+      onClose={onClose}
+      mt="md"
+    >
       {message}
     </Alert>
   );

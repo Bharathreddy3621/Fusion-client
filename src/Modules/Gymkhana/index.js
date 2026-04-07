@@ -48,6 +48,7 @@ export * as budgetService from "./services/budgetService";
 export * as clubService from "./services/clubService";
 export * as memberService from "./services/memberService";
 export * as fileTrackingService from "./services/fileTrackingService";
+export * as yearlyPlanService from "./services/yearlyPlanService";
 
 export { default as apiClientDefault } from "./services/apiClient";
 
@@ -57,6 +58,14 @@ export {
   usePastEvents,
   useEventComments,
   useCreateEvent,
+  useUpdateEvent,
+  useDeleteEvent,
+  useApproveFICEvent,
+  useApproveCounsellorEvent,
+  useApproveDeanEvent,
+  useRejectEvent,
+  useAddEventComment,
+  useCoordinatorEvents,
 } from "./hooks/useEvents";
 
 export {
@@ -64,23 +73,34 @@ export {
   useBudgetComments,
   useCreateBudget,
   useUpdateBudget,
-  useApproveBudget,
+  useApproveFICBudget,
+  useApproveCounsellorBudget,
+  useApproveDeanBudget,
+  useReviewDeanBudget,
   useRejectBudget,
+  useAddBudgetComment,
 } from "./hooks/useBudget";
 
 export {
   useClubData,
+  useClubMembers,
+  useClubAchievements,
   useClubPositionData,
+  useCurrentLoginRoleRelatedClub,
   useAllClubPositions,
   useFests,
   useCreateFest,
 } from "./hooks/useClubs";
 
 export {
-  useFileTracking,
-  useCreateFile,
-  useForwardFile,
-} from "./hooks/useFileTracking";
+  useYearlyPlans,
+  useClubwiseYearlyPlans,
+  useUploadYearlyPlan,
+  useApproveFICYearlyPlan,
+  useApproveCounsellorYearlyPlan,
+  useApproveDeanYearlyPlan,
+  useRejectYearlyPlan,
+} from "./hooks/useYearlyPlan";
 
 // ==================== Utilities ====================
 export * as constants from "./utils/constants";
@@ -89,4 +109,4 @@ export * as validators from "./utils/validators";
 export * as formatters from "./utils/formatters";
 
 // ==================== Styles ====================
-export { default as styles } from "./styles/GymkhanaModule.css";
+export { default as styles } from "./styles/gymkhana.module.css";

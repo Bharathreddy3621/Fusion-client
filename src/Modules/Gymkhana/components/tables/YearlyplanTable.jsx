@@ -23,15 +23,12 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { notifications } from "@mantine/notifications";
 import { host } from "../../routes/globalRoutes/index.jsx";
+import { useClubPositionData } from "../../hooks/useClubs";
 import {
-  useGetClubPositionData,
-  useGetCurrentLoginnedRoleRelatedClub,
-  approveFICYearlyPlan,
-  approveCounsellorYearlyPlan,
-  approveDeanYearlyPlan,
-  rejectYearlyPlan,
-  ListYearlyPlans,
-} from "./BackendLogic/ApiRoutes";
+  useYearlyPlans,
+  useApproveYearlyPlan,
+  useRejectYearlyPlan,
+} from "../../hooks/useYearlyPlan";
 
 function YearlyApprovals({ clubName }) {
   const user = useSelector((state) => state.user);

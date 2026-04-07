@@ -28,18 +28,13 @@ import { useSelector } from "react-redux";
 import { notifications } from "@mantine/notifications";
 import { host } from "../../routes/globalRoutes/index.jsx";
 import {
-  rejectEventButton,
-  modifyEventButton,
-  useGetUpcomingEvents,
-  useGetCommentsEventInfo,
-  approveFICEventButton,
-  approveCounsellorEventButton,
-  approveDeanEventButton,
-  useGetClubPositionData,
-  useGetCurrentLoginnedRoleRelatedClub,
-} from "./BackendLogic/ApiRoutes";
-
-import { EventsApprovalForm } from "./EventForm";
+  useUpcomingEvents,
+  useEventComments,
+  useCreateEvent,
+} from "../../hooks/useEvents";
+import { useClubPositionData } from "../../hooks/useClubs";
+import { EventsApprovalForm } from "../forms/EventForm";
+import { forwardFile } from "../../services/fileTrackingService";
 
 function EventApprovals({ clubName }) {
   const user = useSelector((state) => state.user);

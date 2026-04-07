@@ -1,8 +1,10 @@
 import axios from "axios";
-import { host } from "../../../routes/globalRoutes";
+
+// Get host from environment or use default
+const host = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 const apiClient = axios.create({
-  baseURL: `${host}/gymkhana`,
+  baseURL: `${host}`,
   timeout: 30000,
 });
 

@@ -1,15 +1,15 @@
-import { Modal, Button, Group, Text } from '@mantine/core';
-import PropTypes from 'prop-types';
+import { Modal, Button, Group, Text } from "@mantine/core";
+import PropTypes from "prop-types";
 
 function ConfirmModal({
   opened,
   onClose,
   onConfirm,
-  title = 'Confirm Action',
-  message = 'Are you sure you want to proceed?',
-  confirmText = 'Confirm',
-  cancelText = 'Cancel',
-  confirmColor = 'green',
+  title = "Confirm Action",
+  message = "Are you sure you want to proceed?",
+  confirmText = "Confirm",
+  cancelText = "Cancel",
+  confirmColor = "green",
   loading = false,
 }) {
   return (

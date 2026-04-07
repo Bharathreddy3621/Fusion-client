@@ -24,6 +24,13 @@ export const updateEvent = async (eventData) => {
   return response.data;
 };
 
+export const deleteEvent = async (eventId) => {
+  const response = await apiClient.delete("/api/delete_event/", {
+    data: { id: eventId },
+  });
+  return response.data;
+};
+
 export const approveFICEvent = async (eventId) => {
   const response = await apiClient.put("/api/fic_approve_event/", {
     id: eventId,
