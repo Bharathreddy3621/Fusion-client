@@ -7,7 +7,7 @@ export const useUpcomingBudgets = () => {
   return useQuery({
     queryKey: ["upcomingBudgets"],
     queryFn: async () => {
-      const response = await apiClient.get("/budget/");
+      const response = await apiClient.get("/gymkhana/api/budget/club/");
       return response.data;
     },
   });
@@ -18,7 +18,7 @@ export const useBudgetComments = (budgetId) => {
   return useQuery({
     queryKey: ["budgetComments", budgetId],
     queryFn: async () => {
-      const response = await apiClient.post("/api/list_budget_comments/", {
+      const response = await apiClient.post("/gymkhana/api/budget/comments/", {
         budget_id: budgetId,
       });
       return response.data;
@@ -33,9 +33,13 @@ export const useCreateBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetData) => {
-      const response = await apiClient.put("/api/new_budget/", budgetData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/budget/club/",
+        budgetData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -55,7 +59,10 @@ export const useUpdateBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetData) => {
-      const response = await apiClient.put("/api/update_budget/", budgetData);
+      const response = await apiClient.put(
+        "/gymkhana/api/budget/update-amount/",
+        budgetData,
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -75,7 +82,7 @@ export const useApproveFICBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetId) => {
-      const response = await apiClient.put("/api/fic_approve_budget/", {
+      const response = await apiClient.put("/gymkhana/api/budget/approve/", {
         id: budgetId,
       });
       return response.data;
@@ -97,7 +104,7 @@ export const useApproveCounsellorBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetId) => {
-      const response = await apiClient.put("/api/counsellor_approve_budget/", {
+      const response = await apiClient.put("/gymkhana/api/budget/approve/", {
         id: budgetId,
       });
       return response.data;
@@ -119,7 +126,7 @@ export const useApproveDeanBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetId) => {
-      const response = await apiClient.put("/api/dean_approve_budget/", {
+      const response = await apiClient.put("/gymkhana/api/budget/approve/", {
         id: budgetId,
       });
       return response.data;
@@ -141,7 +148,7 @@ export const useReviewDeanBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetId) => {
-      const response = await apiClient.put("/api/dean_review_budget/", {
+      const response = await apiClient.put("/gymkhana/api/budget/approve/", {
         id: budgetId,
       });
       return response.data;
@@ -163,7 +170,7 @@ export const useRejectBudget = () => {
 
   return useMutation({
     mutationFn: async (budgetId) => {
-      const response = await apiClient.put("/api/reject_budget/", {
+      const response = await apiClient.put("/gymkhana/api/budget/reject/", {
         id: budgetId,
       });
       return response.data;
@@ -185,11 +192,14 @@ export const useAddBudgetComment = () => {
 
   return useMutation({
     mutationFn: async ({ budgetId, commentatorDesignation, comment }) => {
-      const response = await apiClient.post("/api/create_budget_comment/", {
-        budget_id: budgetId,
-        commentator_designation: commentatorDesignation,
-        comment,
-      });
+      const response = await apiClient.post(
+        "/gymkhana/api/budget/comments/add/",
+        {
+          budget_id: budgetId,
+          commentator_designation: commentatorDesignation,
+          comment,
+        },
+      );
       return response.data;
     },
     onSuccess: (_, variables) => {

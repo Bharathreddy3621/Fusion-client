@@ -7,7 +7,7 @@ export const useUpcomingEvents = () => {
   return useQuery({
     queryKey: ["upcomingEvents"],
     queryFn: async () => {
-      const response = await apiClient.get("/upcoming_events/");
+      const response = await apiClient.get("/gymkhana/api/events/");
       return response.data;
     },
   });
@@ -18,7 +18,7 @@ export const usePastEvents = () => {
   return useQuery({
     queryKey: ["pastEvents"],
     queryFn: async () => {
-      const response = await apiClient.get("/past_events/");
+      const response = await apiClient.get("/gymkhana/api/events/?past=true");
       return response.data;
     },
   });
@@ -29,7 +29,7 @@ export const useEventComments = (eventId) => {
   return useQuery({
     queryKey: ["eventComments", eventId],
     queryFn: async () => {
-      const response = await apiClient.post("/api/list_event_comments/", {
+      const response = await apiClient.post("/gymkhana/api/events/comments/", {
         event_id: eventId,
       });
       return response.data;
@@ -44,9 +44,13 @@ export const useCreateEvent = () => {
 
   return useMutation({
     mutationFn: async (eventData) => {
-      const response = await apiClient.put("/api/new_event/", eventData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/events/new/",
+        eventData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -66,9 +70,13 @@ export const useUpdateEvent = () => {
 
   return useMutation({
     mutationFn: async (eventData) => {
-      const response = await apiClient.put("/api/update_event/", eventData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/events/new/",
+        eventData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -88,7 +96,7 @@ export const useDeleteEvent = () => {
 
   return useMutation({
     mutationFn: async (eventId) => {
-      const response = await apiClient.delete("/api/delete_event/", {
+      const response = await apiClient.delete("/gymkhana/api/events/delete/", {
         data: { id: eventId },
       });
       return response.data;
@@ -110,7 +118,7 @@ export const useApproveFICEvent = () => {
 
   return useMutation({
     mutationFn: async (eventId) => {
-      const response = await apiClient.put("/api/fic_approve_event/", {
+      const response = await apiClient.put("/gymkhana/api/events/approve/", {
         id: eventId,
       });
       return response.data;
@@ -132,7 +140,7 @@ export const useApproveCounsellorEvent = () => {
 
   return useMutation({
     mutationFn: async (eventId) => {
-      const response = await apiClient.put("/api/counsellor_approve_event/", {
+      const response = await apiClient.put("/gymkhana/api/events/approve/", {
         id: eventId,
       });
       return response.data;
@@ -154,7 +162,7 @@ export const useApproveDeanEvent = () => {
 
   return useMutation({
     mutationFn: async (eventId) => {
-      const response = await apiClient.put("/api/dean_approve_event/", {
+      const response = await apiClient.put("/gymkhana/api/events/approve/", {
         id: eventId,
       });
       return response.data;
@@ -176,7 +184,7 @@ export const useRejectEvent = () => {
 
   return useMutation({
     mutationFn: async (eventId) => {
-      const response = await apiClient.put("/api/reject_event/", {
+      const response = await apiClient.put("/gymkhana/api/events/delete/", {
         id: eventId,
       });
       return response.data;
@@ -198,11 +206,14 @@ export const useAddEventComment = () => {
 
   return useMutation({
     mutationFn: async ({ eventId, commentatorDesignation, comment }) => {
-      const response = await apiClient.post("/api/create_event_comment/", {
-        event_id: eventId,
-        commentator_designation: commentatorDesignation,
-        comment,
-      });
+      const response = await apiClient.post(
+        "/gymkhana/api/events/comments/add/",
+        {
+          event_id: eventId,
+          commentator_designation: commentatorDesignation,
+          comment,
+        },
+      );
       return response.data;
     },
     onSuccess: (_, variables) => {
@@ -221,7 +232,7 @@ export const useCoordinatorEvents = (rollNo, token) => {
   return useQuery({
     queryKey: ["coordinatorEvents", rollNo],
     queryFn: async () => {
-      const response = await apiClient.post("/api/coordinator_events/", {
+      const response = await apiClient.post("/gymkhana/api/events/", {
         roll_number: rollNo,
       });
       return response.data;

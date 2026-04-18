@@ -7,7 +7,7 @@ export const useClubData = (clubName) => {
   return useQuery({
     queryKey: ["clubData", clubName],
     queryFn: async () => {
-      const response = await apiClient.post("/club_detail/", {
+      const response = await apiClient.post("/gymkhana/api/clubs/", {
         club_name: clubName,
       });
       return response.data;
@@ -21,7 +21,7 @@ export const useClubMembers = (clubName, token) => {
   return useQuery({
     queryKey: ["clubMembers", clubName],
     queryFn: async () => {
-      const response = await apiClient.post("/api/members_records/", {
+      const response = await apiClient.post("/gymkhana/api/clubs/members/", {
         club_name: clubName,
       });
       return response.data;
@@ -35,7 +35,7 @@ export const useClubAchievements = (clubName, token) => {
   return useQuery({
     queryKey: ["clubAchievements", clubName],
     queryFn: async () => {
-      const response = await apiClient.post("/api/show_achievement/", {
+      const response = await apiClient.post("/gymkhana/api/clubs/", {
         club_name: clubName,
       });
       return response.data;
@@ -49,7 +49,7 @@ export const useClubPositionData = (token) => {
   return useQuery({
     queryKey: ["clubPositionData"],
     queryFn: async () => {
-      const response = await apiClient.get("/api/list_all_club_position/");
+      const response = await apiClient.get("/gymkhana/api/clubs/");
       return response.data;
     },
   });
@@ -60,7 +60,7 @@ export const useCurrentLoginRoleRelatedClub = (rollNo, token) => {
   return useQuery({
     queryKey: ["currentLoginRoleRelatedClub", rollNo],
     queryFn: async () => {
-      const response = await apiClient.post("/api/list_club_position/", {
+      const response = await apiClient.post("/gymkhana/api/clubs/", {
         name: rollNo,
       });
       return response.data;
@@ -74,7 +74,7 @@ export const useAllClubPositions = (token) => {
   return useQuery({
     queryKey: ["allClubPositions"],
     queryFn: async () => {
-      const response = await apiClient.get("/api/list_all_club_position/");
+      const response = await apiClient.get("/gymkhana/api/clubs/");
       return response.data;
     },
   });
@@ -85,7 +85,7 @@ export const useFests = () => {
   return useQuery({
     queryKey: ["fests"],
     queryFn: async () => {
-      const response = await apiClient.get("/fest/");
+      const response = await apiClient.get("/gymkhana/api/budget/fest/");
       return response.data;
     },
   });
@@ -104,9 +104,13 @@ export const useCreateFest = () => {
       formData.append("date", festData.date);
       formData.append("link", festData.link);
 
-      const response = await apiClient.post("/api/new_fest/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await apiClient.post(
+        "/gymkhana/api/budget/fest/",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       return response.data;
     },
     onSuccess: () => {

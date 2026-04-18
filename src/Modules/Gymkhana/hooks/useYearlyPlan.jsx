@@ -7,7 +7,7 @@ export const useYearlyPlans = () => {
   return useQuery({
     queryKey: ["yearlyPlans"],
     queryFn: async () => {
-      const response = await apiClient.get("/api/yearly-plans/");
+      const response = await apiClient.get("/gymkhana/api/yearly-plans/");
       return response.data;
     },
   });
@@ -18,7 +18,9 @@ export const useClubwiseYearlyPlans = () => {
   return useQuery({
     queryKey: ["clubwiseYearlyPlans"],
     queryFn: async () => {
-      const response = await apiClient.get("/api/clubwise_yearly_plan/");
+      const response = await apiClient.get(
+        "/gymkhana/api/clubwise_yearly_plan/",
+      );
       return response.data;
     },
   });
@@ -31,7 +33,7 @@ export const useUploadYearlyPlan = () => {
   return useMutation({
     mutationFn: async (formData) => {
       const response = await apiClient.post(
-        "/api/upload_yearly_plan_excel/",
+        "/gymkhana/api/upload_yearly_plan_excel/",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -56,9 +58,12 @@ export const useApproveFICYearlyPlan = () => {
 
   return useMutation({
     mutationFn: async (planId) => {
-      const response = await apiClient.put("/api/fic_approve_yearly_plan/", {
-        id: planId,
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/fic_approve_yearly_plan/",
+        {
+          id: planId,
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -79,7 +84,7 @@ export const useApproveCounsellorYearlyPlan = () => {
   return useMutation({
     mutationFn: async (planId) => {
       const response = await apiClient.put(
-        "/api/counsellor_approve_yearly_plan/",
+        "/gymkhana/api/counsellor_approve_yearly_plan/",
         { id: planId },
       );
       return response.data;
@@ -101,9 +106,12 @@ export const useApproveDeanYearlyPlan = () => {
 
   return useMutation({
     mutationFn: async (planId) => {
-      const response = await apiClient.put("/api/dean_approve_yearly_plan/", {
-        id: planId,
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/dean_approve_yearly_plan/",
+        {
+          id: planId,
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
@@ -123,9 +131,12 @@ export const useRejectYearlyPlan = () => {
 
   return useMutation({
     mutationFn: async (planId) => {
-      const response = await apiClient.put("/api/reject_yearly_plan/", {
-        id: planId,
-      });
+      const response = await apiClient.put(
+        "/gymkhana/api/reject_yearly_plan/",
+        {
+          id: planId,
+        },
+      );
       return response.data;
     },
     onSuccess: () => {

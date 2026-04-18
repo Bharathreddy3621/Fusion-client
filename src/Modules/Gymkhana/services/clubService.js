@@ -1,40 +1,40 @@
 import apiClient from "./apiClient";
 
 export const getClubDetails = async (clubName) => {
-  const response = await apiClient.post("/club_detail/", {
+  const response = await apiClient.post("/gymkhana/api/clubs/", {
     club_name: clubName,
   });
   return response.data;
 };
 
 export const getClubMembers = async (clubName) => {
-  const response = await apiClient.post("/api/members_records/", {
+  const response = await apiClient.post("/gymkhana/api/clubs/members/", {
     club_name: clubName,
   });
   return response.data;
 };
 
 export const getClubAchievements = async (clubName) => {
-  const response = await apiClient.post("/api/show_achievement/", {
+  const response = await apiClient.post("/gymkhana/api/clubs/", {
     club_name: clubName,
   });
   return response.data;
 };
 
 export const getClubPositionData = async () => {
-  const response = await apiClient.get("/api/list_all_club_position/");
+  const response = await apiClient.get("/gymkhana/api/clubs/");
   return response.data;
 };
 
 export const getCurrentLoginRoleRelatedClub = async (rollNo) => {
-  const response = await apiClient.post("/api/list_club_position/", {
+  const response = await apiClient.post("/gymkhana/api/clubs/", {
     name: rollNo,
   });
   return response.data;
 };
 
 export const getFests = async () => {
-  const response = await apiClient.get("/fest/");
+  const response = await apiClient.get("/gymkhana/api/budget/fest/");
   return response.data;
 };
 
@@ -46,8 +46,12 @@ export const createFest = async (festData) => {
   formData.append("date", festData.date);
   formData.append("link", festData.link);
 
-  const response = await apiClient.post("/api/new_fest/", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  const response = await apiClient.post(
+    "/gymkhana/api/budget/fest/",
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
   return response.data;
 };

@@ -24,7 +24,7 @@ function CoordinatorMembers({ clubName }) {
   const approvemutation = useMutation({
     mutationFn: (clubMemberId) => {
       return axios.post(
-        `${host}/gymkhana/api/member_approve/`,
+        `${host}/gymkhana/api/members/approve/`,
         { id: clubMemberId },
         {
           headers: {
@@ -51,7 +51,7 @@ function CoordinatorMembers({ clubName }) {
   const rejectMutation = useMutation({
     mutationFn: (clubMemberId) => {
       return axios.post(
-        `${host}/gymkhana/api/member_reject/`,
+        `${host}/gymkhana/api/members/reject/`,
         { id: clubMemberId },
         {
           headers: {
