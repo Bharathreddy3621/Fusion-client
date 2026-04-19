@@ -1,5 +1,5 @@
 import React from 'react';
-import GymkhanaDashboard from './GymkhanaDashboard';
+import GymkhanaDashboard from './Modules/Gymkhana/GymkhanaDashboard';
 
 const GymkhanaPreviewMain = () => {
     return <GymkhanaDashboard />;
