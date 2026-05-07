@@ -690,6 +690,7 @@ function GymkhanaDashboard() {
 
   const renderCalendarContent = () => (
     <Box
+      className="gymkhana-section gymkhana-section-body"
       style={{
         display: "flex",
         flexDirection: isMobile ? "column" : "row",
@@ -754,10 +755,17 @@ function GymkhanaDashboard() {
   );
 
   const renderFestsContent = () => (
-    <Box mt="10px" mx="0" my="xs">
+    <Box className="gymkhana-section gymkhana-section-body" mt="10px" mx="0" my="xs">
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
         {fests.map((fest) => (
-          <Card key={fest.id} shadow="sm" padding="lg" radius="md" withBorder>
+          <Card
+            key={fest.id}
+            className="gymkhana-grid-card"
+            shadow="sm"
+            padding="lg"
+            radius="md"
+            withBorder
+          >
             <Text weight={700} size="lg">
               {fest.name}
             </Text>
@@ -802,10 +810,10 @@ function GymkhanaDashboard() {
   );
 
   const renderEventsContent = () => (
-    <Box mt="10px">
-      <Box>
+    <Box className="gymkhana-page" mt="10px">
+      <Box className="gymkhana-section gymkhana-section-body">
         <Suspense fallback={<div>Loading Events Table for you ...</div>}>
-          <Text size="xl" m="lg">
+          <Text className="gymkhana-section-title" size="xl" mb="md">
             Upcoming Events
           </Text>
           <DataTable
@@ -823,9 +831,9 @@ function GymkhanaDashboard() {
           />
         </Suspense>
       </Box>
-      <Box>
+      <Box className="gymkhana-section gymkhana-section-body">
         <Suspense fallback={<div>Loading Events Table for you ...</div>}>
-          <Text size="xl" m="lg">
+          <Text className="gymkhana-section-title" size="xl" mb="md">
             Past Events
           </Text>
           <DataTable
@@ -861,10 +869,21 @@ function GymkhanaDashboard() {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="gymkhana-empty-state">
+        <div>
+          <Text className="gymkhana-empty-state__title">Loading Gymkhana</Text>
+          <Text className="gymkhana-empty-state__text">
+            Pulling club, event, and fest data into the Fusion workspace.
+          </Text>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
+    <div className="gymkhana-shell">
       <ModuleTabs
         tabs={tabs}
         activeTab={activeTab}
@@ -873,25 +892,27 @@ function GymkhanaDashboard() {
           dispatch(setActiveTab_(tabs[tab].title));
         }}
       />
-      <Box
-        mt={{ base: "5px", sm: "30px" }}
-        mx={{ base: "5px", sm: "30px" }}
-        px={{ base: "5px", sm: "30px" }}
-        mb={{ base: "xs", sm: "30px" }}
-        w="90vw"
-      >
-        <Group justify="end" mb="5px" mr="110px">
-          <Select
-            data={clubOptions}
-            value={selectedClub}
-            placeholder="Select a Club"
-            onChange={setSelectedClub}
-            w="220px"
-          />
-        </Group>
-        {renderActiveContent()}
+      <Box className="gymkhana-section">
+        <Box className="gymkhana-section-body">
+          <Group className="gymkhana-toolbar" justify="space-between" mb="md">
+            <Text className="gymkhana-section-title">Gymkhana Dashboard</Text>
+            <Text size="sm" className="gymkhana-subtle-text">
+              Browse clubs, calendars, fests, and event history.
+            </Text>
+          </Group>
+          <Group justify="end" mb="md">
+            <Select
+              data={clubOptions}
+              value={selectedClub}
+              placeholder="Select a Club"
+              onChange={setSelectedClub}
+              w="220px"
+            />
+          </Group>
+          {renderActiveContent()}
+        </Box>
       </Box>
-    </>
+    </div>
   );
 }
 

@@ -132,9 +132,16 @@ function ClubViewComponent({
     switch (tabs[parseInt(activeclubfeature, 10)]?.title) {
       case "About":
         return (
-          <Text>
-            Welcome to {clubName} {AboutClub}
-          </Text>
+          <div className="gymkhana-section">
+            <Box className="gymkhana-section-body">
+              <Text className="gymkhana-section-title" mb="sm">
+                About {clubName}
+              </Text>
+              <Text className="gymkhana-club-copy">
+                Welcome to {clubName}. {AboutClub}
+              </Text>
+            </Box>
+          </div>
         );
       case "Members":
         return (
@@ -262,18 +269,25 @@ function ClubViewComponent({
   };
 
   return (
-    <Box style={{ height: "100vh" }}>
-      <Group justify="space-between">
-        <Text align="content-start" fw={800} size="40px">
-          {clubName}
-        </Text>
-        <ModuleTabs
-          tabs={tabs}
-          activeTab={activeclubfeature}
-          setActiveTab={setactiveclubfeature}
-        />
-      </Group>
-      <Box mt="20px">{renderActiveContent()}</Box>
+    <Box className="gymkhana-club-shell gymkhana-shell gymkhana-shell--full">
+      <div className="gymkhana-section">
+        <Box className="gymkhana-section-body">
+          <div className="gymkhana-club-header">
+            <Stack gap={4}>
+              <Text className="gymkhana-club-title">{clubName}</Text>
+              <Text className="gymkhana-subtle-text" size="sm">
+                Gymkhana club workspace inside Fusion
+              </Text>
+            </Stack>
+            <ModuleTabs
+              tabs={tabs}
+              activeTab={activeclubfeature}
+              setActiveTab={setactiveclubfeature}
+            />
+          </div>
+        </Box>
+      </div>
+      <Box>{renderActiveContent()}</Box>
     </Box>
   );
 }

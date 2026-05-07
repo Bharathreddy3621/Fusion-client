@@ -102,7 +102,21 @@ function DataTable({
   const table = useMantineReactTable({
     columns: tableColumns,
     data,
+    enableDensityToggle: false,
+    enableFullScreenToggle: false,
     enableStickyHeader: true,
+    initialState: {
+      density: "xs",
+      pagination: {
+        pageIndex: 0,
+        pageSize: 10,
+      },
+    },
+    mantinePaperProps: {
+      radius: "md",
+      shadow: "none",
+      withBorder: false,
+    },
     mantineToolbarAlertBannerProps: isError
       ? { color: "red", children: "Error loading data" }
       : undefined,
@@ -113,7 +127,11 @@ function DataTable({
     ...tableProps,
   });
 
-  return <MantineReactTable table={table} />;
+  return (
+    <div className="gymkhana-table">
+      <MantineReactTable table={table} />
+    </div>
+  );
 }
 
 DataTable.propTypes = {
